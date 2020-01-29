@@ -1,27 +1,29 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import FriendsList from './components/FriendsList';
-import Login from './components/Login';
+import LoginForm from './components/LoginForm';
+import FriendDisplay from './components/FriendDisplay';
+import MakeFriendForm from './components/MakeFriendForm';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <div>
-          <Link to ="/login">Login</Link>
-        </div>
-        
-     <Switch>
-     <PrivateRoute path="/protected" component={FriendsList} /> 
-    <Route path="/login" component={Login} />
-    <Route component={Login} />
-     </Switch>
-
-      </Router>
-    </div>
+    <Router>
+      <div>
+        <ul>
+          <li><Link to="/login">Log In</Link></li>
+          <li><Link to="/friends">Friend List</Link></li>
+          <li><Link to="/makefriend">Make A Friend</Link></li>
+        </ul>
+        <Switch>
+          <PrivateRoute path="/friends" component={FriendDisplay} />
+          <PrivateRoute path="/makefriend" component={MakeFriendForm} />
+          <Route path="/login" component={LoginForm} />
+          <Route component={LoginForm} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
